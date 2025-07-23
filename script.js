@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const imageUrl = data.data.url;
                     imageUrlDiv.innerHTML = `Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a>`;
                     const koboUrl = `https://ee-eu.kobotoolbox.org/RbdL5CJM?d[Voucher_Link]=${encodeURIComponent(imageUrl)}`;
-                    window.open(koboUrl, '_blank', 'toolbar=no,menubar=no,location=no');
+                    window.open(koboUrl, '_blank');
                 } else {
                     imageUrlDiv.innerText = 'Image upload failed.';
                 }
