@@ -69,3 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data.image) {
+    const imageFile = event.data.image;
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(new File([imageFile], imageFile.name, { type: imageFile.type }));
+    const imageInput = document.getElementById('imageInput');
+    imageInput.files = dataTransfer.files;
+    imageInput.dispatchEvent(new Event('change'));
+  }
+});

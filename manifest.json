@@ -3,7 +3,7 @@
   "name": "FFC Transaction",
   "short_name": "FFC Transaction",
   "start_url": "https://shushilan-cxb.github.io/FFC-Transaction/",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "share_target": {
