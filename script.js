@@ -1,3 +1,23 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(registration => {
+    registration.addEventListener('updatefound', () => {
+      const newWorker = registration.installing;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          // New service worker is installed, but not yet controlling the page.
+          // You can notify the user to refresh the page to activate the new service worker.
+        }
+      });
+    });
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    // This event fires when the service worker controlling this page changes.
+    // Reload the page to ensure the new service worker is used.
+    window.location.reload();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if ('launchQueue' in window) {
         launchQueue.setConsumer(async (launchParams) => {

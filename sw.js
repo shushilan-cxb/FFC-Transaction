@@ -1,5 +1,6 @@
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open('ffc-cache').then((cache) => {
       return cache.addAll([
@@ -13,15 +14,21 @@ self.addEventListener('install', (event) => {
   );
 });
 
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
+});
+
 self.addEventListener('fetch', (event) => {
-  if (event.request.method === 'POST') {
+  if (event.request.method === 'POST' && event.request.url.endsWith('index.html')) {
     event.respondWith(Response.redirect('index.html'));
     event.waitUntil(
       (async () => {
         const formData = await event.request.formData();
         const image = formData.get('image');
-        const client = await self.clients.get(event.resultingClientId);
-        client.postMessage({ image });
+        const clientsArr = await self.clients.matchAll({includeUncontrolled: true, type: 'window'});
+        if (clientsArr && clientsArr.length) {
+          clientsArr[0].postMessage({ image });
+        }
       })()
     );
   } else {
