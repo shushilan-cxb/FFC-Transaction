@@ -8,6 +8,7 @@ Develop a mobile-responsive and visually appealing website to streamline the FFC
 *   **Styling:** Tailwind CSS, Google Fonts
 *   **Image Hosting:** ImgBB API
 *   **Form:** KoboToolbox Webform
+*   **PWA:** Manifest, Service Worker
 
 ## Phases
 
@@ -34,7 +35,19 @@ Develop a mobile-responsive and visually appealing website to streamline the FFC
     - Add clear instructions and user feedback messages.
     - Final testing of all functionalities.
 
+### 4. PWA and Share Target
+- **Objective:** Convert the web application into a Progressive Web App (PWA) and enable it to be a share target for images.
+- **Tasks:
+    - Create `manifest.json` to define the PWA's properties.
+    - Create a service worker (`sw.js`) to enable offline functionality.
+    - Link the manifest and register the service worker in `index.html`.
+    - Add a 512x512 icon to `manifest.json` for better PWA compatibility.
+    - Update the `start_url` in `manifest.json`.
+    - Implement the `share_target` feature in `manifest.json` to allow the app to receive shared images.
+    - Add `launchQueue` logic in `script.js` to process shared images and trigger the upload.
+
 ## Timeline
 - **Phase 1:** 1 day
 - **Phase 2:** 1 day
 - **Phase 3:** 1 day
+- **Phase 4:** 1 day

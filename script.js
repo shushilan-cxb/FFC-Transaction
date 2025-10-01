@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if ('launchQueue' in window) {
+        launchQueue.setConsumer(async (launchParams) => {
+            if (launchParams.files && launchParams.files.length > 0) {
+                const fileHandle = launchParams.files[0];
+                const file = await fileHandle.getFile();
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                imageInput.files = dataTransfer.files;
+                imageInput.dispatchEvent(new Event('change'));
+            }
+        });
+    }
     const imageInput = document.getElementById('imageInput');
     const imageUrlDiv = document.getElementById('imageUrl');
     const dropZone = document.querySelector('.border-dashed');
